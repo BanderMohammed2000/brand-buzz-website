@@ -1,12 +1,15 @@
 <template>
   <the-header></the-header>
+  <section-services></section-services>
 </template>
 
 <script>
 import TheHeader from "./components/layout/TheHeader.vue";
+import SectionServices from "./sections/SectionServices.vue";
 export default {
   components: {
     TheHeader,
+    SectionServices,
   },
 };
 </script>
@@ -18,5 +21,25 @@ export default {
 
 body {
   font-family: "Poppins", sans-serif;
+}
+
+header,
+section,
+footer {
+  padding-left: 65px;
+  padding-right: 65px;
+}
+
+.orange-color {
+  color: #e85f19;
+}
+
+@media (max-width: 575.98px) {
+  header,
+  section,
+  footer {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
 }
 </style>

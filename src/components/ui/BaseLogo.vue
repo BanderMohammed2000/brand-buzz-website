@@ -1,5 +1,5 @@
 <template>
-  <div class="logo me-4">
+  <div class="logo mx-4">
     <span class="circle-left circle"></span>
     <span class="circle-right circle"></span>
     <span class="circle-bottom circle"></span>

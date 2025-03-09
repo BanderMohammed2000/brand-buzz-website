@@ -26,7 +26,7 @@
               <a class="nav-link" href="#">About us</a>
             </li>
             <li class="nav-item me-3">
-              <a class="nav-link" href="#">Services</a>
+              <a class="nav-link" href="#services">Services</a>
             </li>
             <li class="nav-item me-3">
               <a class="nav-link" href="#">Contact us</a>
@@ -55,11 +55,6 @@ export default {
 </script>
 
 <style scoped>
-header {
-  padding-left: 65px;
-  padding-right: 65px;
-}
-
 .navbar .navbar-brand,
 .nav-item .nav-link {
   font-weight: 500;
@@ -72,12 +67,5 @@ header {
 }
 .nav-item .nav-link:hover {
   color: #e85f19;
-}
-
-@media (max-width: 575.98px) {
-  header {
-    padding-left: 40px;
-    padding-right: 40px;
-  }
 }
 </style>
