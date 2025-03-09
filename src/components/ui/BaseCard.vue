@@ -3,9 +3,8 @@
     <div v-if="$slots.header" class="card-header">
       <slot name="header"></slot>
     </div>
-    <div class="card-body">
-      <slot></slot>
-    </div>
+    <slot> </slot>
+
     <div v-if="$slots.footer" class="card-footer">
       <slot name="footer"></slot>
     </div>
@@ -20,6 +19,11 @@ export default {
       required: false,
       default: null,
     },
+    paddingLeft: {
+      type: String,
+      required: false,
+      default: null,
+    },
   },
 };
 </script>
@@ -27,6 +31,7 @@ export default {
 <style scoped>
 .card {
   border: 0;
+  background-color: transparent;
 }
 .card-header {
   background-color: transparent;

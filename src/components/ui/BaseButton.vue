@@ -34,7 +34,7 @@ button:hover {
 }
 
 button.outline {
-  background-color: #ffffff;
+  background-color: transparent;
   color: #e85f19;
   box-shadow: none;
 }

@@ -1,17 +1,19 @@
 <template>
   <section id="services">
-    <div class="container-fluid mt-4">
+    <div class="container-fluid mt-4 mb-5">
       <div class="row mb-3">
         <div class="col text-center">
           <base-card>
-            <h1 class="card-title">
-              We Provide The Best <span class="orange-color">Services</span>
-            </h1>
-            <p class="card-text mt-3 mx-auto">
-              Let us unleash the full potential of your business with our
-              data-driven strategies
-            </p></base-card
-          >
+            <div class="card-body">
+              <h1 class="card-title">
+                We Provide The Best <span class="orange-color">Services</span>
+              </h1>
+              <p class="card-text mt-3 mx-auto">
+                Let us unleash the full potential of your business with our
+                data-driven strategies
+              </p>
+            </div>
+          </base-card>
         </div>
       </div>
       <div class="row">
@@ -30,66 +32,17 @@
                 <img :src="`/icons/${service.icon}.png`" alt="icon" />
               </div>
             </template>
-            <h6 class="card-title">{{ service.title }}</h6>
-            <p class="card-text mx-auto">
-              {{ service.text }}
-            </p>
+            <div class="card-body">
+              <h6 class="card-title">{{ service.title }}</h6>
+              <p class="card-text mx-auto">
+                {{ service.text }}
+              </p>
+            </div>
             <template v-slot:footer>
               <base-button mode="outline button-small">Read More</base-button>
             </template>
           </base-card>
         </div>
-        <!-- <div class="col-lg-3 col-md-6 mb-4">
-          <base-card mode="service-card" class="mx-auto">
-            <template v-slot:header>
-              <div class="square py-2">
-                <span><i class="fa-solid fa-magnifying-glass"></i></span>
-              </div>
-            </template>
-            <h6 class="card-title">Seo/Sem</h6>
-            <p class="card-text mx-auto">
-              Let us unleash the full potential of your business with our
-              data-driven strategies
-            </p>
-            <template v-slot:footer>
-              <base-button mode="outline button-small">Read More</base-button>
-            </template>
-          </base-card>
-        </div>
-        <div class="col-lg-3 col-md-6 mb-4">
-          <base-card mode="service-card" class="mx-auto">
-            <template v-slot:header>
-              <div class="square py-2">
-                <span><i class="fa-solid fa-magnifying-glass"></i></span>
-              </div>
-            </template>
-            <h6 class="card-title">Seo/Sem</h6>
-            <p class="card-text mx-auto">
-              Let us unleash the full potential of your business with our
-              data-driven strategies
-            </p>
-            <template v-slot:footer>
-              <base-button mode="outline button-small">Read More</base-button>
-            </template>
-          </base-card>
-        </div>
-        <div class="col-lg-3 col-md-6 mb-4">
-          <base-card mode="service-card" class="mx-auto">
-            <template v-slot:header>
-              <div class="square py-2">
-                <span><i class="fa-solid fa-magnifying-glass"></i></span>
-              </div>
-            </template>
-            <h6 class="card-title">Seo/Sem</h6>
-            <p class="card-text mx-auto">
-              Let us unleash the full potential of your business with our
-              data-driven strategies
-            </p>
-            <template v-slot:footer>
-              <base-button mode="outline button-small">Read More</base-button>
-            </template>
-          </base-card>
-        </div> -->
       </div>
     </div>
   </section>

@@ -3,14 +3,17 @@
     <div class="row">
       <div class="col-lg-5 my-auto">
         <base-card class="mb-3">
-          <h1 class="card-title">
-            We create <span class="orange-color">solutions</span> for your
-            business
-          </h1>
-          <p class="card-text mt-3">
-            Our team keeps a keen eye on emerging trends and technologies to
-            ensure your marketing campaigns remain cutting-edge.
-          </p>
+          <div class="card-body">
+            <h1 class="card-title">
+              We create <span class="orange-color">solutions</span> for your
+              business
+            </h1>
+            <p class="card-text mt-3">
+              Our team keeps a keen eye on emerging trends and technologies to
+              ensure your marketing campaigns remain cutting-edge.
+            </p>
+          </div>
+
           <template v-slot:footer>
             <base-button class="mt-4">Get Started</base-button>
           </template>

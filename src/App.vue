@@ -1,15 +1,18 @@
 <template>
   <the-header></the-header>
   <section-services></section-services>
+  <section-solutions></section-solutions>
 </template>
 
 <script>
 import TheHeader from "./components/layout/TheHeader.vue";
 import SectionServices from "./sections/SectionServices.vue";
+import SectionSolutions from "./sections/SectionSolutions.vue";
 export default {
   components: {
     TheHeader,
     SectionServices,
+    SectionSolutions,
   },
 };
 </script>
