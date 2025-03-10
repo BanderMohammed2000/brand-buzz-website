@@ -1,6 +1,6 @@
 <template>
   <section id="services">
-    <div class="container-fluid mt-4 mb-5">
+    <div class="container-fluid mt-4 mb-5 px-4">
       <div class="row mb-3">
         <div class="col text-center">
           <base-card>

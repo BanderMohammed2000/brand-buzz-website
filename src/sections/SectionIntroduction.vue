@@ -37,48 +37,21 @@
 }
 
 .img {
-  /*Animation*/
-  /* background-image: url("../assets/images/starting-business-hidden.svg");
-  background-repeat: no-repeat; */
-
-  /* background-size: contain;
-  background-position: right top; */
-
-  /* background-size: cover;
-  background-position: center; */
-
-  /* min-height: 500px; */
-
-  /* width: 100%;
-  height: 100%; */
-}
-
-.img {
   width: 100%;
   height: auto;
   object-fit: contain;
 }
 
 @media (max-width: 991.98px) {
-  .img {
-    /* background-position: center top; */
-    /* min-height: 457px; */
-  }
 }
 
 @media (max-width: 767.98px) {
-  .img {
-    /* min-height: 303px; */
-  }
   .card-title {
     width: 300px;
   }
 }
 
 @media (max-width: 575.98px) {
-  /* .img {
-    min-height: 267px;
-  } */
   .card-title {
     width: 100%;
   }
