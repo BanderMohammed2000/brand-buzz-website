@@ -4,7 +4,7 @@
       <div class="row mb-3">
         <div class="col text-center">
           <base-card>
-            <div class="card-body">
+            <div class="card-body pt-3 pt-lg-0">
               <h1 class="card-title">
                 We Provide The Best <span class="orange-color">Services</span>
               </h1>

@@ -41,6 +41,11 @@
           </div>
         </div>
       </div>
+      <multiple-circles
+        bottom="0"
+        right="-90%"
+        transform="rotate(202deg)"
+      ></multiple-circles>
     </div>
   </section>
 </template>

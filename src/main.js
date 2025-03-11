@@ -5,6 +5,7 @@ import BaseButton from "./components/ui/BaseButton.vue";
 import BaseLogo from "./components/ui/BaseLogo.vue";
 import BaseCard from "./components/ui/BaseCard.vue";
 import HorizontalCard from "./components/ui/HorizontalCard.vue";
+import MultipleCircles from "./components/ui/MultipleCircles.vue";
 
 const app = createApp(App);
 
@@ -12,5 +13,6 @@ app.component("base-button", BaseButton);
 app.component("base-logo", BaseLogo);
 app.component("base-card", BaseCard);
 app.component("horizontal-card", HorizontalCard);
+app.component("multiple-circles", MultipleCircles);
 
 app.mount("#app");

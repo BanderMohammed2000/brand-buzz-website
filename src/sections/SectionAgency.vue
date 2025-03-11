@@ -27,6 +27,11 @@
         </div>
       </div>
     </div>
+    <multiple-circles
+      bottom="72px"
+      left="-34px"
+      transform="rotate(232deg)"
+    ></multiple-circles>
   </section>
 </template>
 

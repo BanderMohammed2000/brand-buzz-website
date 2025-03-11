@@ -1,6 +1,6 @@
 <template>
   <header>
-    <nav class="navbar navbar-expand-lg pt-3">
+    <nav class="navbar navbar-expand-lg pt-3 pb-1 pb-lg-0">
       <div class="container-fluid">
         <a class="navbar-brand d-flex me-5" href="#">
           <base-logo></base-logo>
@@ -41,7 +41,13 @@
         </div>
       </div>
     </nav>
+    <multiple-circles top="30px" left="-34px"></multiple-circles>
     <section-introduction></section-introduction>
+    <multiple-circles
+      bottom="0"
+      right="-90%"
+      transform="rotate(181deg)"
+    ></multiple-circles>
   </header>
 </template>
 

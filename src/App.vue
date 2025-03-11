@@ -34,6 +34,7 @@ section,
 footer {
   padding-left: 65px;
   padding-right: 65px;
+  position: relative;
 }
 
 .orange-color {
