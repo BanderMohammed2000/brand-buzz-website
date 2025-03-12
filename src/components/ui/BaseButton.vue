@@ -1,5 +1,5 @@
 <template>
-  <button :class="mode">
+  <button :class="mode" :style="{ color, borderColor }">
     <slot></slot>
   </button>
 </template>
@@ -8,6 +8,16 @@
 export default {
   props: {
     mode: {
+      type: String,
+      required: false,
+      default: null,
+    },
+    color: {
+      type: String,
+      required: false,
+      default: null,
+    },
+    borderColor: {
       type: String,
       required: false,
       default: null,
@@ -39,9 +49,10 @@ button.outline {
   box-shadow: none;
 }
 
-button.outline:hover {
+/* بعدين*/
+/* button.outline:hover {
   background-color: #f4f4f4;
-}
+} */
 
 .button-small {
   padding: 0.4rem 0.8rem;

@@ -115,10 +115,6 @@ export default {
   padding-top: 10px;
 }
 
-/* .horizontal-card .card-title {
-  font-size: 16px;
-} */
-
 .horizontal-card .card-text {
   font-size: 14px;
   color: #6d6d6d;
