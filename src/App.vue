@@ -33,8 +33,7 @@ body {
 }
 
 header,
-section,
-footer {
+section {
   padding-left: 65px;
   padding-right: 65px;
   position: relative;
@@ -46,8 +45,7 @@ footer {
 
 @media (max-width: 575.98px) {
   header,
-  section,
-  footer {
+  section {
     padding-left: 30px;
     padding-right: 30px;
   }

@@ -10,6 +10,7 @@
 /*Start Logo*/
 .logo {
   position: relative;
+  display: inline;
 }
 .logo .circle {
   background-color: #e85f19;
