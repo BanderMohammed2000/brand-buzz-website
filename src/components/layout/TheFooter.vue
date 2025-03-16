@@ -57,7 +57,9 @@
     <div class="container-fluid">
       <div class="row mt-5">
         <div class="col text-center copy-right">
-          <p class="m-0">All right reversed 2024</p>
+          <p class="mt-4 mb-0">
+            All right reversed <span id="date">{{ getCurrentDate }}</span>
+          </p>
         </div>
       </div>
     </div>
@@ -85,12 +87,18 @@ export default {
       ],
     };
   },
+  computed: {
+    getCurrentDate() {
+      return new Date().getFullYear();
+    },
+  },
 };
 </script>
 
 <style scoped>
 footer {
   background-color: #fcede6;
+  margin-top: 100px;
 }
 .col > div {
   align-items: center;
@@ -128,10 +136,8 @@ h6 {
   /* padding: 30px 0; */
   height: 100px;
   /* border-radius: 46% 54% 0% 0% / 86% 86% 14% 14%; */
-  /* clip-path: ellipse(51% 87% at 50% 112%); */
-  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 10" preserveAspectRatio="none"><path d="M0,10 C30,0 70,0 100,10 Z" fill="%23D9541E"/></svg>')
-    no-repeat bottom;
-  background-size: cover;
+  clip-path: ellipse(51% 87% at 50% 112%);
+
   /* border: 2px solid #e65415; */
 }
 

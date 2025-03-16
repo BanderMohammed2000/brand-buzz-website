@@ -3,6 +3,7 @@
   <section-services></section-services>
   <section-solutions></section-solutions>
   <section-agency></section-agency>
+  <section-comments></section-comments>
   <the-footer></the-footer>
 </template>
 
@@ -11,6 +12,7 @@ import TheHeader from "./components/layout/TheHeader.vue";
 import SectionServices from "./sections/SectionServices.vue";
 import SectionSolutions from "./sections/SectionSolutions.vue";
 import SectionAgency from "./sections/SectionAgency.vue";
+import SectionComments from "./sections/SectionComments.vue";
 import TheFooter from "./components/layout/TheFooter.vue";
 export default {
   components: {
@@ -19,6 +21,7 @@ export default {
     SectionSolutions,
     SectionAgency,
     TheFooter,
+    SectionComments,
   },
 };
 </script>
@@ -33,7 +36,7 @@ body {
 }
 
 header,
-section {
+section:not(section#comments) {
   padding-left: 65px;
   padding-right: 65px;
   position: relative;
