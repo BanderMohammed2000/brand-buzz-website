@@ -50,12 +50,12 @@
         </div>
       </div>
       <button class="carousel-control-prev" @click="scrollPrev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
+        <span>
+          <i class="fa-solid fa-angle-left fa-lg"></i>
+        </span>
       </button>
       <button class="carousel-control-next" @click="scrollNext">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
+        <span> <i class="fa-solid fa-angle-right fa-lg"></i> </span>
       </button>
     </div>
   </div>
@@ -115,6 +115,48 @@ export default {
           name: "John Doe",
           position: "Web developer",
         },
+        {
+          text: "Some quick example text to build on the card title and make up the bulk of the card's content.",
+          image:
+            "https://codingyaar.com/wp-content/uploads/bootstrap-profile-card-image.jpg",
+          name: "John Doe",
+          position: "Web developer",
+        },
+        {
+          text: "Some quick example text to build on the card title and make up the bulk of the card's content.",
+          image:
+            "https://codingyaar.com/wp-content/uploads/bootstrap-profile-card-image.jpg",
+          name: "John Doe",
+          position: "Web developer",
+        },
+        {
+          text: "Some quick example text to build on the card title and make up the bulk of the card's content.",
+          image:
+            "https://codingyaar.com/wp-content/uploads/bootstrap-profile-card-image.jpg",
+          name: "John Doe",
+          position: "Web developer",
+        },
+        // {
+        //   text: "Some quick example text to build on the card title and make up the bulk of the card's content.",
+        //   image:
+        //     "https://codingyaar.com/wp-content/uploads/bootstrap-profile-card-image.jpg",
+        //   name: "John Doe",
+        //   position: "Web developer",
+        // },
+        // {
+        //   text: "Some quick example text to build on the card title and make up the bulk of the card's content.",
+        //   image:
+        //     "https://codingyaar.com/wp-content/uploads/bootstrap-profile-card-image.jpg",
+        //   name: "John Doe",
+        //   position: "Web developer",
+        // },
+        // {
+        //   text: "Some quick example text to build on the card title and make up the bulk of the card's content.",
+        //   image:
+        //     "https://codingyaar.com/wp-content/uploads/bootstrap-profile-card-image.jpg",
+        //   name: "John Doe",
+        //   position: "Web developer",
+        // },
       ],
       scrollPosition: 0,
       cardWidth: 0,
@@ -122,6 +164,7 @@ export default {
       isSmallScreen: false,
       activeItemIndex: 0,
       numOfCardsShown: 0,
+      numOfClicksNext: 0,
     };
   },
   mounted() {
@@ -131,6 +174,14 @@ export default {
     this.$nextTick(() => {
       const carouselInner = this.$refs.carouselInner;
       const carouselItems = carouselInner.children;
+
+      // this.numOfClicksNext = Math.floor((this.commentData.length - 3) / 2) + 1;
+
+      let commentDataLength = (this.commentData.length - 3) / 2;
+      this.numOfClicksNext =
+        commentDataLength % 1 !== 0
+          ? Math.floor(commentDataLength) + 1
+          : commentDataLength;
 
       if (carouselItems.length > 0) {
         // offsetWidth يعطينا العرض الفعلي (بالبكسل) لهذا العنصر، بما في ذلك الـ padding والـ border، لكنه لا يشمل الـ margin.
@@ -149,7 +200,10 @@ export default {
 
         this.scrollPosition =
           Math.floor(carouselItems.length / 2 - 1) * this.cardWidth;
-        this.activeItemIndex = Math.ceil(carouselItems.length / 2);
+
+        // this.activeItemIndex = Math.ceil(carouselItems.length / 2);
+        let value = carouselItems.length / 2;
+        this.activeItemIndex = value % 1 !== 0 ? Math.ceil(value) : value + 1;
 
         console.log("card offsetWidth ", carouselItems[0].offsetWidth);
         console.log("scrollWidth ", carouselInner.scrollWidth);
@@ -178,9 +232,11 @@ export default {
       this.numOfCardsShown = mobileSize ? 1 : labSize ? 3 : 2;
     },
     scrollNext() {
+      // this.scrollPosition <
+      //   this.carouselWidth - this.cardWidth * this.numOfCardsShown
       if (
-        this.scrollPosition <
-        this.carouselWidth - this.cardWidth * this.numOfCardsShown
+        this.numOfClicksNext <
+        this.commentData.length - this.numOfCardsShown
       ) {
         this.scrollPosition += this.cardWidth;
 
@@ -192,10 +248,13 @@ export default {
         });
 
         this.activeItemIndex++;
+        this.numOfClicksNext++;
+        console.log("scrollNext  " + this.numOfClicksNext);
       }
     },
     scrollPrev() {
-      if (this.scrollPosition > 0) {
+      // this.scrollPosition > 0
+      if (this.numOfClicksNext > 0) {
         this.scrollPosition -= this.cardWidth;
         console.log("scrollPosition  scrollPrev  " + this.scrollPosition);
 
@@ -205,6 +264,8 @@ export default {
         });
 
         this.activeItemIndex--;
+        this.numOfClicksNext--;
+        console.log("scrollPrev  " + this.numOfClicksNext);
       }
     },
   },
@@ -228,11 +289,6 @@ export default {
   /* transition: all 5s ease-in-out; */
 
   z-index: 1;
-}
-/*بعدين*/
-.carousel-item.active .card {
-  transform: scale(1.1) translateY(-13px);
-  margin: 0 25px;
 }
 
 .carousel-item .card {
@@ -321,17 +377,20 @@ transition
     margin-right: 0;
     flex: 0 0 calc(100% / 2);
   }
-  .carousel-item.active {
-    scale: 1;
-  }
 }
 
 @media screen and (min-width: 768px) {
   .carousel-item {
     display: block;
     margin-right: 0;
-    flex: 0 0 calc(99% / 3);
+    /* flex: 0 0 calc(99% / 3); */
+    flex: 0 0 calc(100% / 3);
     /* flex: 0 0 450px; */
+  }
+  /*بعدين*/
+  .carousel-item.active .card {
+    transform: scale(1.1) translateY(-13px);
+    margin: 0 25px;
   }
 }
 
@@ -349,9 +408,6 @@ transition
     margin-right: 0;
     flex: 0 0 100%;
     /* flex: 0 0 450px; */
-  }
-  .carousel-item.active {
-    scale: 1;
   }
 }
 </style>
