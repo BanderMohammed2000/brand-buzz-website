@@ -15,10 +15,16 @@
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span class="navbar-toggler-icon"></span>
+          <!-- <span class="navbar-toggler-icon"></span> -->
+          <i
+            class="fa-solid fa-bars fa-lg"
+            @click="toggleMenu"
+            v-if="isMenuOpen"
+          ></i>
+          <i class="fa-solid fa-x fa-lg" @click="toggleMenu" v-else></i>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0 mt-2 mt-lg-0">
             <li class="nav-item me-3">
               <a class="nav-link active" aria-current="page" href="#">Home</a>
             </li>
@@ -57,6 +63,16 @@ export default {
   components: {
     SectionIntroduction,
   },
+  data() {
+    return {
+      isMenuOpen: true,
+    };
+  },
+  methods: {
+    toggleMenu() {
+      this.isMenuOpen = !this.isMenuOpen;
+    },
+  },
 };
 </script>
 
@@ -64,6 +80,12 @@ export default {
 .navbar .navbar-brand,
 .nav-item .nav-link {
   font-weight: 500;
+}
+button.navbar-toggler {
+  border: none;
+}
+button.navbar-toggler:focus {
+  box-shadow: none;
 }
 .nav-item .nav-link {
   color: #000000;
@@ -73,5 +95,27 @@ export default {
 }
 .nav-item .nav-link:hover {
   color: #e85f19;
+}
+
+@media (max-width: 991.98px) {
+  ul.navbar-nav {
+    align-items: center;
+  }
+  form.d-flex {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 575.98px) {
+  ul.navbar-nav {
+    align-items: flex-start;
+  }
+  form.d-flex {
+    justify-content: flex-start;
+  }
+  ul.navbar-nav,
+  form.d-flex {
+    margin-left: 12px;
+  }
 }
 </style>

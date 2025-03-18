@@ -6,6 +6,7 @@
           <img
             src="../assets/images/SEO analytics team-amico.svg"
             class="img"
+            loading="lazy"
           />
         </div>
         <div class="col-lg-6 my-auto">
@@ -156,6 +157,9 @@ export default {
 }
 
 @media (max-width: 575.98px) {
+  .col-image {
+    width: 80%;
+  }
   .base-card .card-body,
   .card.horizontal-card,
   .buttons {

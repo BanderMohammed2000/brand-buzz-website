@@ -29,7 +29,11 @@
                 :style="{ backgroundColor: service.color }"
               >
                 <!-- <span><i :class="service.icon"></i></span> -->
-                <img :src="`/icons/${service.icon}.png`" alt="icon" />
+                <img
+                  :src="`/icons/${service.icon}.png`"
+                  alt="icon"
+                  loading="lazy"
+                />
               </div>
             </template>
             <div class="card-body">

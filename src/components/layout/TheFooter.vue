@@ -26,6 +26,7 @@
                   ><img
                     src="../../assets/logos/facebook.png"
                     alt="facebook-logo"
+                    loading="lazy"
                 /></a>
               </li>
               <li class="list-inline-item logo">
@@ -33,11 +34,15 @@
                   ><img
                     src="../../assets/logos/instagram.png"
                     alt="instagram-logo"
+                    loading="lazy"
                 /></a>
               </li>
               <li class="list-inline-item logo">
                 <a href="#"
-                  ><img src="../../assets/logos/twitter.png" alt="X-logo"
+                  ><img
+                    src="../../assets/logos/twitter.png"
+                    alt="X-logo"
+                    loading="lazy"
                 /></a>
               </li>
             </ul>

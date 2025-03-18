@@ -21,7 +21,11 @@
       </div>
       <div class="col-lg-7">
         <!-- <div class="img"></div> -->
-        <img src="../assets/images/starting-business.svg" class="img" />
+        <img
+          src="../assets/images/starting-business.svg"
+          class="img"
+          loading="lazy"
+        />
       </div>
     </div>
   </div>

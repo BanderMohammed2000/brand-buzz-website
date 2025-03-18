@@ -18,7 +18,7 @@
           <div class="card rounded-3">
             <div class="card-body">
               <div class="d-flex align-items-center pt-2">
-                <img :src="data.image" :alt="data.name" />
+                <img :src="data.image" :alt="data.name" loading="lazy" />
                 <div>
                   <h6 class="card-title mb-0">{{ data.name }}</h6>
                   <span class="text-secondary">{{ data.position }}</span>
