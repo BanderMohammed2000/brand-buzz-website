@@ -330,12 +330,34 @@ export default {
 
 .carousel-control-prev,
 .carousel-control-next {
-  width: 3rem;
-  height: 3rem;
-  background-color: grey;
+  width: 34px;
+  height: 34px;
+  background-color: gray;
   border-radius: 50%;
   top: 50%;
   transform: translateY(-50%);
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.15),
+    -1px -1px 10px rgba(0, 0, 0, 0.15);
+}
+
+.carousel-control-next,
+.carousel-control-prev {
+  opacity: 0.5;
+  color: #ffffff;
+}
+
+.carousel-control-next:hover,
+.carousel-control-prev:hover {
+  color: #ffffff;
+  opacity: inherit;
+}
+
+.carousel-control-next {
+  right: 10px;
+}
+
+.carousel-control-prev {
+  left: 10px;
 }
 
 /*
@@ -408,6 +430,13 @@ transition
     margin-right: 0;
     flex: 0 0 100%;
     /* flex: 0 0 450px; */
+  }
+  .carousel-control-next {
+    right: 7px;
+  }
+
+  .carousel-control-prev {
+    left: 7px;
   }
 }
 </style>

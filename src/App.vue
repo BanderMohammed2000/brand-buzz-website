@@ -48,9 +48,11 @@ section:not(section#comments) {
 
 @media (max-width: 575.98px) {
   header,
-  section {
-    padding-left: 30px;
-    padding-right: 30px;
+  section:not(section#comments) {
+    padding-left: 15px;
+    padding-right: 15px;
+    /* padding-left: 30px;
+    padding-right: 30px; */
   }
 }
 </style>

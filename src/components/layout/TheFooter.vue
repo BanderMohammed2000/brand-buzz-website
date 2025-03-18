@@ -13,7 +13,7 @@
           </div>
         </div>
       </div>
-      <div class="row mt-4">
+      <div class="row mt-4 ps-2 ps-lg-0">
         <div class="col-lg-3 col-6 col-md-4 my-auto col-icon">
           <div>
             <div class="d-flex">
