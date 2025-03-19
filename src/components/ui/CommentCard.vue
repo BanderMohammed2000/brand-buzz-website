@@ -12,19 +12,18 @@
       <p class="card-text mt-3 mb-3">{{ data.text }}</p>
       <div>
         <ul class="list-inline rating">
-          <li class="list-inline-item me-1">
+          <li
+            class="list-inline-item me-1"
+            v-for="star in data.rating"
+            :key="star"
+          >
             <i class="fa-solid fa-star"></i>
           </li>
-          <li class="list-inline-item me-1">
-            <i class="fa-solid fa-star"></i>
-          </li>
-          <li class="list-inline-item me-1">
-            <i class="fa-solid fa-star"></i>
-          </li>
-          <li class="list-inline-item me-1">
-            <i class="fa-solid fa-star"></i>
-          </li>
-          <li class="list-inline-item me-1">
+          <li
+            class="list-inline-item me-1 gray-color"
+            v-for="star in 5 - data.rating"
+            :key="star"
+          >
             <i class="fa-solid fa-star"></i>
           </li>
         </ul>
@@ -73,6 +72,10 @@ export default {
 
 .rating {
   color: #f3af41;
+}
+
+.gray-color {
+  color: #c2c2c2;
 }
 
 @media (max-width: 991.98px) {
