@@ -4,7 +4,7 @@
       <div class="row">
         <div class="col-lg-6 col-image">
           <img
-            src="../assets/images/SEO analytics team-amico.svg"
+            src="/images/SEO analytics team-amico.svg"
             class="img"
             loading="lazy"
           />

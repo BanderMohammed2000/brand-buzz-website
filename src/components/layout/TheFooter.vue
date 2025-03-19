@@ -1,5 +1,5 @@
 <template>
-  <footer>
+  <footer id="contact-us">
     <div class="container">
       <div class="row mt-5 mt-lg-0">
         <div class="col">
@@ -24,7 +24,7 @@
               <li class="list-inline-item logo">
                 <a href="#"
                   ><img
-                    src="../../assets/logos/facebook.png"
+                    src="/icons/facebook.png"
                     alt="facebook-logo"
                     loading="lazy"
                 /></a>
@@ -32,17 +32,14 @@
               <li class="list-inline-item logo">
                 <a href="#"
                   ><img
-                    src="../../assets/logos/instagram.png"
+                    src="/icons/instagram.png"
                     alt="instagram-logo"
                     loading="lazy"
                 /></a>
               </li>
               <li class="list-inline-item logo">
                 <a href="#"
-                  ><img
-                    src="../../assets/logos/twitter.png"
-                    alt="X-logo"
-                    loading="lazy"
+                  ><img src="/icons/twitter.png" alt="X-logo" loading="lazy"
                 /></a>
               </li>
             </ul>

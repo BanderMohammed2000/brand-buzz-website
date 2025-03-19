@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid pt-3 pb-5 px-0">
+  <div class="container-fluid px-0">
     <div
       id="testimonialCarousel"
       ref="carousel"
@@ -13,40 +13,7 @@
           :key="index"
           :class="{ active: index === getActiveItemIndex }"
         >
-          <!-- <transition name="card" mode="out-in">
-          </transition> -->
-          <div class="card rounded-3">
-            <div class="card-body">
-              <div class="d-flex align-items-center pt-2">
-                <img :src="data.image" :alt="data.name" loading="lazy" />
-                <div>
-                  <h6 class="card-title mb-0">{{ data.name }}</h6>
-                  <span class="text-secondary">{{ data.position }}</span>
-                  <div class="text-secondary">{{ index + 1 }}</div>
-                </div>
-              </div>
-              <p class="card-text mt-3 mb-3">{{ data.text }}</p>
-              <div>
-                <ul class="list-inline rating">
-                  <li class="list-inline-item me-1">
-                    <i class="fa-solid fa-star"></i>
-                  </li>
-                  <li class="list-inline-item me-1">
-                    <i class="fa-solid fa-star"></i>
-                  </li>
-                  <li class="list-inline-item me-1">
-                    <i class="fa-solid fa-star"></i>
-                  </li>
-                  <li class="list-inline-item me-1">
-                    <i class="fa-solid fa-star"></i>
-                  </li>
-                  <li class="list-inline-item me-1">
-                    <i class="fa-solid fa-star"></i>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
+          <comment-card :data="data"></comment-card>
         </div>
       </div>
       <button class="carousel-control-prev" @click="scrollPrev">
@@ -62,101 +29,57 @@
 </template>
 
 <script>
+import CommentCard from "./CommentCard.vue";
+
 export default {
+  components: {
+    CommentCard,
+  },
   data() {
     return {
       commentData: [
         {
+          name: "Bander Ali",
+          jop: "Web developer",
+          image: "/images/personal-photos/1.jpg",
           text: "Some quick example text to build on the card title and make up the bulk of the card's content.",
-          image:
-            "https://codingyaar.com/wp-content/uploads/square-headshot-1.png",
-          name: "Jane Doe",
-          position: "Web developer",
         },
         {
+          name: "Ahmed Salem",
+          jop: "Web developer",
+          image: "/images/personal-photos/2.jpg",
           text: "Some quick example text to build on the card title and make up the bulk of the card's content.",
-          image:
-            "https://codingyaar.com/wp-content/uploads/square-headshot-2.png",
-          name: "June Doe",
-          position: "Web developer",
         },
         {
+          name: "Nasser Ali",
+          jop: "Web developer",
+          image: "/images/personal-photos/3.png",
           text: "Some quick example text to build on the card title and make up the bulk of the card's content.",
-          image:
-            "https://codingyaar.com/wp-content/uploads/bootstrap-profile-card-image.jpg",
-          name: "John Doe",
-          position: "Web developer",
         },
         {
+          name: "Jamel Jamal",
+          jop: "Web developer",
+          image: "/images/personal-photos/4.png",
           text: "Some quick example text to build on the card title and make up the bulk of the card's content.",
-          image:
-            "https://codingyaar.com/wp-content/uploads/bootstrap-profile-card-image.jpg",
-          name: "John Doe",
-          position: "Web developer",
         },
         {
+          name: "Bader Salem",
+          jop: "Web developer",
+          image: "/images/personal-photos/5.png",
           text: "Some quick example text to build on the card title and make up the bulk of the card's content.",
-          image:
-            "https://codingyaar.com/wp-content/uploads/bootstrap-profile-card-image.jpg",
-          name: "John Doe",
-          position: "Web developer",
         },
         {
+          name: "Adel Ahmed",
+          jop: "Web developer",
+          image: "/images/personal-photos/6.jpg",
           text: "Some quick example text to build on the card title and make up the bulk of the card's content.",
-          image:
-            "https://codingyaar.com/wp-content/uploads/bootstrap-profile-card-image.jpg",
-          name: "John Doe",
-          position: "Web developer",
         },
         {
+          name: "Mohammed Ali",
+          jop: "Web developer",
+          image: "/images/personal-photos/7.jpg",
           text: "Some quick example text to build on the card title and make up the bulk of the card's content.",
-          image:
-            "https://codingyaar.com/wp-content/uploads/bootstrap-profile-card-image.jpg",
-          name: "John Doe",
-          position: "Web developer",
         },
-        {
-          text: "Some quick example text to build on the card title and make up the bulk of the card's content.",
-          image:
-            "https://codingyaar.com/wp-content/uploads/bootstrap-profile-card-image.jpg",
-          name: "John Doe",
-          position: "Web developer",
-        },
-        {
-          text: "Some quick example text to build on the card title and make up the bulk of the card's content.",
-          image:
-            "https://codingyaar.com/wp-content/uploads/bootstrap-profile-card-image.jpg",
-          name: "John Doe",
-          position: "Web developer",
-        },
-        {
-          text: "Some quick example text to build on the card title and make up the bulk of the card's content.",
-          image:
-            "https://codingyaar.com/wp-content/uploads/bootstrap-profile-card-image.jpg",
-          name: "John Doe",
-          position: "Web developer",
-        },
-        // {
-        //   text: "Some quick example text to build on the card title and make up the bulk of the card's content.",
-        //   image:
-        //     "https://codingyaar.com/wp-content/uploads/bootstrap-profile-card-image.jpg",
-        //   name: "John Doe",
-        //   position: "Web developer",
-        // },
-        // {
-        //   text: "Some quick example text to build on the card title and make up the bulk of the card's content.",
-        //   image:
-        //     "https://codingyaar.com/wp-content/uploads/bootstrap-profile-card-image.jpg",
-        //   name: "John Doe",
-        //   position: "Web developer",
-        // },
-        // {
-        //   text: "Some quick example text to build on the card title and make up the bulk of the card's content.",
-        //   image:
-        //     "https://codingyaar.com/wp-content/uploads/bootstrap-profile-card-image.jpg",
-        //   name: "John Doe",
-        //   position: "Web developer",
-        // },
       ],
       scrollPosition: 0,
       cardWidth: 0,
@@ -201,12 +124,11 @@ export default {
         this.scrollPosition =
           Math.floor(carouselItems.length / 2 - 1) * this.cardWidth;
 
-        // this.activeItemIndex = Math.ceil(carouselItems.length / 2);
         let value = carouselItems.length / 2;
         this.activeItemIndex = value % 1 !== 0 ? Math.ceil(value) : value + 1;
 
-        console.log("card offsetWidth ", carouselItems[0].offsetWidth);
-        console.log("scrollWidth ", carouselInner.scrollWidth);
+        // console.log("card offsetWidth ", carouselItems[0].offsetWidth);
+        // console.log("scrollWidth ", carouselInner.scrollWidth);
 
         this.$refs.carouselInner.scrollTo({
           left: this.scrollPosition,
@@ -230,6 +152,7 @@ export default {
       let labSize = window.matchMedia("(min-width: 768px)").matches;
 
       this.numOfCardsShown = mobileSize ? 1 : labSize ? 3 : 2;
+      // console.log(this.numOfCardsShown);
     },
     scrollNext() {
       // this.scrollPosition <
@@ -240,7 +163,7 @@ export default {
       ) {
         this.scrollPosition += this.cardWidth;
 
-        console.log("scrollPosition  scrollNext  " + this.scrollPosition);
+        // console.log("scrollPosition  scrollNext  " + this.scrollPosition);
 
         this.$refs.carouselInner.scrollTo({
           left: this.scrollPosition,
@@ -249,14 +172,14 @@ export default {
 
         this.activeItemIndex++;
         this.numOfClicksNext++;
-        console.log("scrollNext  " + this.numOfClicksNext);
+        // console.log("scrollNext  " + this.numOfClicksNext);
       }
     },
     scrollPrev() {
       // this.scrollPosition > 0
       if (this.numOfClicksNext > 0) {
         this.scrollPosition -= this.cardWidth;
-        console.log("scrollPosition  scrollPrev  " + this.scrollPosition);
+        // console.log("scrollPosition  scrollPrev  " + this.scrollPosition);
 
         this.$refs.carouselInner.scrollTo({
           left: this.scrollPosition,
@@ -265,7 +188,7 @@ export default {
 
         this.activeItemIndex--;
         this.numOfClicksNext--;
-        console.log("scrollPrev  " + this.numOfClicksNext);
+        // console.log("scrollPrev  " + this.numOfClicksNext);
       }
     },
   },
@@ -274,58 +197,13 @@ export default {
 
 <style scoped>
 #testimonialCarousel .carousel-inner {
-  height: 310px;
+  height: 350px;
+  overflow: hidden;
   align-items: center;
 }
-.carousel-item {
-  /* transition: all 5s ease-in-out; */
-}
-.carousel-item.active {
-  /* background-color: red; */
-  /* scale: 1.1; */
-  /* flex-grow: 1.2; */
-  /*بعدين*/
-  /* margin: 0 15px; */
-  /* transition: all 5s ease-in-out; */
 
-  z-index: 1;
-}
-
-.carousel-item .card {
-  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.15),
-    -1px -1px 10px rgba(0, 0, 0, 0.15);
-  transition: all 0.3s linear;
-}
-
-.card-title {
-  color: #e85f19;
-  font-weight: 700;
-}
-.card-title,
-.text-secondary {
-  font-size: 15px;
-}
-.card-text {
-  color: #6d6d6d;
-  font-size: 14px;
-}
-.carousel img {
-  width: 50px;
-  max-height: 50px;
-  border-radius: 50%;
-  margin-right: 1rem;
-  overflow: hidden;
-}
-.rating {
-  color: #f3af41;
-}
 .carousel-inner {
   padding: 1em;
-}
-
-.carousel .card {
-  margin: 0 0.5em;
-  border: 0;
 }
 
 .carousel-control-prev,
@@ -360,30 +238,10 @@ export default {
   left: 10px;
 }
 
-/*
-transition
-*/
-
-/* .card-enter-from {
-  transform: scale(1);
+.carousel-item.active .card {
+  transform: scale(1.1) translateY(-13px);
+  margin: 0 25px;
 }
-
-.card-leave-to {
-  transform: scale(0.9);
-}
-
-.card-enter-active {
-  transition: all 0.3s ease-out;
-}
-
-.card-leave-active {
-  transition: all 0.3s ease-in;
-}
-
-.card-enter-to,
-.card-leave-from {
-  transform: scale(1.1);
-} */
 
 @media screen and (min-width: 576px) {
   .carousel-inner {
@@ -409,10 +267,12 @@ transition
     flex: 0 0 calc(100% / 3);
     /* flex: 0 0 450px; */
   }
-  /*بعدين*/
+}
+
+@media screen and (max-width: 851px) {
   .carousel-item.active .card {
-    transform: scale(1.1) translateY(-13px);
-    margin: 0 25px;
+    transform: scale(1) translateY(0);
+    margin: 0 0.5em;
   }
 }
 
@@ -420,10 +280,10 @@ transition
   .carousel-inner {
     display: flex;
     /* width: 90%; */
-    width: 100%;
+    width: 90%;
     margin-inline: auto;
     padding: 1em 0;
-    overflow: hidden;
+    /* overflow: hidden; */
   }
   .carousel-item {
     display: block;

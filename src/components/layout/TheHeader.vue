@@ -2,7 +2,7 @@
   <header>
     <nav class="navbar navbar-expand-lg pt-3 pb-1 pb-lg-0">
       <div class="container-fluid">
-        <a class="navbar-brand d-flex me-5" href="#">
+        <a class="navbar-brand d-flex me-5" href="index.html">
           <base-logo></base-logo>
           BrandBuzz
         </a>
@@ -15,18 +15,19 @@
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <!-- <span class="navbar-toggler-icon"></span> -->
           <i
             class="fa-solid fa-bars fa-lg"
             @click="toggleMenu"
-            v-if="isMenuOpen"
+            v-if="!isMenuOpen"
           ></i>
           <i class="fa-solid fa-x fa-lg" @click="toggleMenu" v-else></i>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0 mt-2 mt-lg-0">
             <li class="nav-item me-3">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
+              <a class="nav-link active" aria-current="page" href="index.html"
+                >Home</a
+              >
             </li>
             <li class="nav-item me-3">
               <a class="nav-link" href="#">About us</a>
@@ -35,13 +36,13 @@
               <a class="nav-link" href="#services">Services</a>
             </li>
             <li class="nav-item me-3">
-              <a class="nav-link" href="#">Contact us</a>
+              <a class="nav-link" href="#contact-us">Contact us</a>
             </li>
             <li class="nav-item me-3">
               <a class="nav-link" href="#">Blog</a>
             </li>
           </ul>
-          <form class="d-flex">
+          <form class="d-flex" @submit.prevent="">
             <base-button type="submit"> Sign Up </base-button>
           </form>
         </div>
@@ -65,7 +66,7 @@ export default {
   },
   data() {
     return {
-      isMenuOpen: true,
+      isMenuOpen: false,
     };
   },
   methods: {

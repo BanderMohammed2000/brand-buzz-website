@@ -23,11 +23,7 @@
         </div>
         <div class="col-lg-6 col-image mx-auto mb-5 mb-lg-0">
           <!-- <div class="img"></div> -->
-          <img
-            src="../assets/images/Data analysis-bro.svg"
-            class="img"
-            loading="lazy"
-          />
+          <img src="/images/Data analysis-bro.svg" class="img" loading="lazy" />
         </div>
       </div>
     </div>
