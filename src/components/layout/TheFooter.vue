@@ -60,7 +60,8 @@
       <div class="row mt-5">
         <div class="col text-center copy-right">
           <p class="mt-4 mb-0">
-            All right reversed <span id="date">{{ getCurrentDate }}</span>
+            All rights reserved <span id="date">{{ getCurrentDate }}</span>
+            ©
           </p>
         </div>
       </div>
