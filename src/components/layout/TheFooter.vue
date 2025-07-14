@@ -4,7 +4,12 @@
       <div class="row mt-5 mt-lg-0">
         <div class="col">
           <div class="row">
-            <div class="col-sm-6"><h3>Ready to get started?</h3></div>
+            <div class="col-sm-6">
+              <!-- <h3>Ready to get started?</h3> -->
+              <div class="wrapper card-title">
+                <h3 class="split-text" ref="splitText"></h3>
+              </div>
+            </div>
             <div class="col-sm-6 text-sm-end">
               <base-button mode="outline" color="#ffffff" borderColor="#ffffff"
                 >Contact Us</base-button
@@ -70,9 +75,15 @@
 </template>
 
 <script>
+import { isInViewport } from "../../utils/viewport";
+import { gsap } from "gsap";
+import TextPlugin from "gsap/TextPlugin";
+
+gsap.registerPlugin(TextPlugin);
 export default {
   data() {
     return {
+      rawMessage: "Ready to get started?",
       companyItems: ["Company", "About", "Contact", "Careers", "Team"],
       designsItems: [
         "Designs",
@@ -89,6 +100,48 @@ export default {
         "Affiliates",
       ],
     };
+  },
+  mounted() {
+    document.fonts.ready.then(() => {
+      window.addEventListener("scroll", this.checkVisibility);
+      // تأكد أيضاً عند التحميل الأول
+      this.checkVisibility();
+    });
+  },
+  // beforeDestroy() {
+  //   window.removeEventListener("scroll", this.checkVisibility);
+  // },
+  methods: {
+    checkVisibility() {
+      const el = this.$refs.splitText;
+      if (el && isInViewport(el)) {
+        // تقسيم النص يدويًا بدون SplitText
+        const message = this.rawMessage;
+        const el = this.$refs.splitText;
+        el.innerHTML = "";
+
+        const chars = message.split("");
+        chars.forEach((char) => {
+          const span = document.createElement("span");
+          span.textContent = char;
+          el.appendChild(span);
+        });
+
+        gsap.fromTo(
+          el.children,
+          { opacity: 0, y: 20 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.3,
+            stagger: 0.04,
+            ease: "power2.out",
+          }
+        );
+
+        window.removeEventListener("scroll", this.checkVisibility);
+      }
+    },
   },
   computed: {
     getCurrentDate() {

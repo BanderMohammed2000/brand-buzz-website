@@ -12,9 +12,12 @@
         <div class="col-lg-6 my-auto">
           <base-card class="base-card">
             <div class="card-body">
-              <h1 class="card-title">
+              <!-- <h1 class="card-title">
                 Simple <span class="orange-color">Solutions!</span>
-              </h1>
+              </h1> -->
+              <div class="wrapper card-title">
+                <h1 class="split-text" ref="splitText"></h1>
+              </div>
               <p class="card-text mt-3">
                 We understand that no two businesses are alike. That's why we
                 take the time to understand
@@ -43,18 +46,38 @@
         </div>
       </div>
       <multiple-circles
+        id="circles-solutions"
         bottom="0"
         right="-90%"
         transform="rotate(202deg)"
+        :opacity1="circlesOpacity.opacity1"
+        :opacity2="circlesOpacity.opacity2"
+        :opacity3="circlesOpacity.opacity3"
+        :opacity4="circlesOpacity.opacity4"
+        :opacity5="circlesOpacity.opacity5"
       ></multiple-circles>
     </div>
   </section>
 </template>
 
 <script>
+import { isInViewport } from "../utils/viewport";
+import { splitNode } from "../utils/splitnode";
+import { gsap } from "gsap";
+import TextPlugin from "gsap/TextPlugin";
+
+gsap.registerPlugin(TextPlugin);
 export default {
   data() {
     return {
+      rawMessage: `Simple <span class="orange-color">Solutions!</span>`,
+      circlesOpacity: {
+        opacity1: false,
+        opacity2: false,
+        opacity3: false,
+        opacity4: false,
+        opacity5: false,
+      },
       solutions: [
         {
           num: 1,
@@ -79,6 +102,70 @@ export default {
       ],
     };
   },
+  mounted() {
+    document.fonts.ready.then(() => {
+      window.addEventListener("scroll", this.checkVisibility);
+      // تأكد أيضاً عند التحميل الأول
+      this.checkVisibility();
+    });
+    window.addEventListener("scroll", this.showCirclesHandler);
+  },
+  // beforeDestroy() {
+  //   window.removeEventListener("scroll", this.checkVisibility);
+  // },
+  methods: {
+    checkVisibility() {
+      const el = this.$refs.splitText;
+      if (el && isInViewport(el)) {
+        const message = this.rawMessage;
+        const el = this.$refs.splitText;
+        el.innerHTML = "";
+
+        // عنصر مؤقت لتحويل HTML string إلى DOM nodes
+        const tempDiv = document.createElement("div");
+        tempDiv.innerHTML = message;
+
+        // نضيف كل عناصر tempDiv المفصولة إلى العنصر المستهدف
+        tempDiv.childNodes.forEach((node) => {
+          el.appendChild(splitNode(node));
+        });
+
+        // تطبيق أنيميشن gsap على كل الـ spans داخل el
+        const spans = el.querySelectorAll("span");
+        gsap.fromTo(
+          spans,
+          { opacity: 0, y: 20 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.3,
+            stagger: 0.04,
+            ease: "power2.out",
+          }
+        );
+
+        window.removeEventListener("scroll", this.checkVisibility);
+      }
+    },
+    showCircles(circlesObject, timeValue) {
+      const circles = document.getElementById("circles-solutions");
+      if (circles && isInViewport(circles)) {
+        const keys = Object.keys(circlesObject);
+        let time = timeValue;
+        for (let i = 0; i < keys.length; i++) {
+          const key = keys[i];
+          setTimeout(() => {
+            circlesObject[key] = +true;
+          }, time);
+          time += 300;
+        }
+        window.removeEventListener("scroll", this.showCirclesHandler);
+      }
+    },
+    showCirclesHandler() {
+      this.showCircles(this.circlesOpacity, 0);
+    },
+  },
 };
 </script>
 
@@ -87,7 +174,7 @@ export default {
   background-color: #fcede6;
 }
 
-.card-title {
+.card-title h1 {
   font-weight: 700;
 }
 

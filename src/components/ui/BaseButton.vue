@@ -49,10 +49,9 @@ button.outline {
   box-shadow: none;
 }
 
-/* بعدين*/
-/* button.outline:hover {
-  background-color: #f4f4f4;
-} */
+button.outline:hover {
+  background-color: #00000009;
+}
 
 .button-small {
   padding: 0.4rem 0.8rem;

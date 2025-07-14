@@ -8,17 +8,28 @@
     class="multiple-circles"
     :style="{ transform, top, right, bottom, left }"
   >
-    <div class="circle-1"></div>
-    <div class="circle-2"></div>
-    <div class="circle-3"></div>
-    <div class="circle-4"></div>
-    <div class="circle-5"></div>
+    <div class="circle-1" :style="{ opacity: opacity1 }"></div>
+    <div class="circle-2" :style="{ opacity: opacity2 }"></div>
+    <div class="circle-3" :style="{ opacity: opacity3 }"></div>
+    <div class="circle-4" :style="{ opacity: opacity4 }"></div>
+    <div class="circle-5" :style="{ opacity: opacity5 }"></div>
   </div>
 </template>
 
 <script>
 export default {
-  props: ["transform", "top", "right", "bottom", "left"],
+  props: [
+    "transform",
+    "top",
+    "right",
+    "bottom",
+    "left",
+    "opacity1",
+    "opacity2",
+    "opacity3",
+    "opacity4",
+    "opacity5",
+  ],
 };
 </script>
 
@@ -35,6 +46,8 @@ export default {
 
 .multiple-circles div {
   position: absolute;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
 }
 
 .multiple-circles div:not(:first-child) {
@@ -48,6 +61,7 @@ export default {
   background-color: #f09365;
   left: 50px;
 }
+
 .circle-2 {
   width: 23px;
   height: 23px;

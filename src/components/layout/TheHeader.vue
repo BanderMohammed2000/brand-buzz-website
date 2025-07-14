@@ -62,7 +62,7 @@
               <a class="nav-link" href="#services">Services</a>
             </li>
             <li class="nav-item me-3">
-              <a class="nav-link" href="#">Our agency</a>
+              <a class="nav-link" href="#agency">Our agency</a>
             </li>
             <li class="nav-item me-3">
               <a class="nav-link" href="#contact-us">Contact us</a>
@@ -74,12 +74,25 @@
         </div>
       </div>
     </nav>
-    <multiple-circles top="30px" left="-34px"></multiple-circles>
+    <multiple-circles
+      top="30px"
+      left="-34px"
+      :opacity1="circlesOpacity.opacity1"
+      :opacity2="circlesOpacity.opacity2"
+      :opacity3="circlesOpacity.opacity3"
+      :opacity4="circlesOpacity.opacity4"
+      :opacity5="circlesOpacity.opacity5"
+    ></multiple-circles>
     <section-introduction></section-introduction>
     <multiple-circles
       bottom="0"
       right="-90%"
       transform="rotate(181deg)"
+      :opacity1="circlesOpacitySecond.opacity1"
+      :opacity2="circlesOpacitySecond.opacity2"
+      :opacity3="circlesOpacitySecond.opacity3"
+      :opacity4="circlesOpacitySecond.opacity4"
+      :opacity5="circlesOpacitySecond.opacity5"
     ></multiple-circles>
   </header>
 </template>
@@ -92,13 +105,53 @@ export default {
   },
   data() {
     return {
+      circlesOpacity: {
+        opacity1: false,
+        opacity2: false,
+        opacity3: false,
+        opacity4: false,
+        opacity5: false,
+      },
+      circlesOpacitySecond: {
+        opacity1: false,
+        opacity2: false,
+        opacity3: false,
+        opacity4: false,
+        opacity5: false,
+      },
       isMenuOpen: false,
     };
+  },
+  mounted() {
+    this.showCircles(this.circlesOpacity, 2500);
+
+    const onScroll = () => {
+      if (window.scrollY >= 300 && window.scrollY <= 400) {
+        this.showCircles(this.circlesOpacitySecond, 0);
+        window.removeEventListener("scroll", onScroll);
+      }
+    };
+    window.addEventListener("scroll", onScroll);
   },
   methods: {
     toggleMenu() {
       this.isMenuOpen = !this.isMenuOpen;
     },
+    showCircles(circlesObject, timeValue) {
+      const keys = Object.keys(circlesObject);
+      let time = timeValue;
+      for (let i = 0; i < keys.length; i++) {
+        const key = keys[i];
+        setTimeout(() => {
+          circlesObject[key] = +true;
+        }, time);
+        time += 300;
+      }
+    },
+
+    // scroll(){
+    //   window.addEventListener("scroll")
+    // };
   },
 };
 </script>

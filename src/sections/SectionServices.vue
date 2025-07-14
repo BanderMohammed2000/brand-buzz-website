@@ -5,9 +5,13 @@
         <div class="col text-center">
           <base-card>
             <div class="card-body pt-3 pt-lg-0">
-              <h1 class="card-title">
+              <!-- <h1 class="card-title" ref="myElement">
                 We Provide The Best <span class="orange-color">Services</span>
-              </h1>
+              </h1> -->
+              <div class="wrapper card-title">
+                <!-- <p class="typewriter" ref="typewriterText"></p> -->
+                <h1 class="split-text" ref="splitText"></h1>
+              </div>
               <p class="card-text mt-3 mx-auto">
                 Let us unleash the full potential of your business with our
                 data-driven strategies
@@ -53,9 +57,17 @@
 </template>
 
 <script>
+import { isInViewport } from "../utils/viewport";
+import { splitNode } from "../utils/splitnode";
+import { gsap } from "gsap";
+import TextPlugin from "gsap/TextPlugin";
+
+gsap.registerPlugin(TextPlugin);
+
 export default {
   data() {
     return {
+      rawMessage: `We Provide The Best <span class="orange-color">Services</span>`,
       services: [
         {
           title: "Seo/Sem",
@@ -84,6 +96,51 @@ export default {
       ],
     };
   },
+  mounted() {
+    document.fonts.ready.then(() => {
+      window.addEventListener("scroll", this.checkVisibility);
+      // تأكد أيضاً عند التحميل الأول
+      this.checkVisibility();
+    });
+  },
+  beforeDestroy() {
+    window.removeEventListener("scroll", this.checkVisibility);
+  },
+  methods: {
+    checkVisibility() {
+      const el = this.$refs.splitText;
+      if (el && isInViewport(el)) {
+        const message = this.rawMessage;
+        const el = this.$refs.splitText;
+        el.innerHTML = "";
+
+        // عنصر مؤقت لتحويل HTML string إلى DOM nodes
+        const tempDiv = document.createElement("div");
+        tempDiv.innerHTML = message;
+
+        // نضيف كل عناصر tempDiv المفصولة إلى العنصر المستهدف
+        tempDiv.childNodes.forEach((node) => {
+          el.appendChild(splitNode(node));
+        });
+
+        // تطبيق أنيميشن gsap على كل الـ spans داخل el
+        const spans = el.querySelectorAll("span");
+        gsap.fromTo(
+          spans,
+          { opacity: 0, y: 20 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.3,
+            stagger: 0.04,
+            ease: "power2.out",
+          }
+        );
+
+        window.removeEventListener("scroll", this.checkVisibility);
+      }
+    },
+  },
   computed: {
     backgroundColor() {
       return this.service.color;
@@ -93,7 +150,7 @@ export default {
 </script>
 
 <style scoped>
-.card-title {
+.card-title h1 {
   font-weight: 700;
 }
 
@@ -107,15 +164,12 @@ export default {
   align-items: center;
   justify-content: center;
   color: #ffffff;
-  /* width: 25%; */
-  /* padding-bottom: 20px; */
   width: 70px;
-  /* border-radius: 5px 4px 15px 1px; */
   border-radius: 7% 25% 26% 1% / 5% 33% 36% 27%;
 }
 
-/* .service-card .square span {
-  font-size: 25px;
+/* button.outline.button-small {
+  background-color: #00000008;
 } */
 
 .service-card .square img {
