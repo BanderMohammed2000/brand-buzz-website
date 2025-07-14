@@ -11,10 +11,14 @@
               <div class="wrapper card-title">
                 <h1 class="split-text" ref="splitText"></h1>
               </div>
-              <p class="card-text mt-3 mb-0">
+              <!-- <p class="card-text mt-3 mb-0">
                 See How Our Digital Marketing Agency Helped
               </p>
-              <p class="card-text">Clients Achieve Their Goals</p>
+              <p class="card-text">Clients Achieve Their Goals</p> -->
+              <p class="card-text mt-3">
+                See How Our Digital Marketing Agency Helped Clients Achieve
+                Their Goals
+              </p>
             </div>
           </base-card>
         </div>
@@ -101,5 +105,25 @@ export default {
 }
 .card-text {
   color: #6d6d6d;
+  width: 40%;
+  margin: auto;
+}
+
+@media (max-width: 991.98px) {
+  .card-text {
+    width: 60%;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .card-text {
+    width: 80%;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .card-text {
+    width: 90%;
+  }
 }
 </style>

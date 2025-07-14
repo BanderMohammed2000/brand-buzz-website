@@ -41,7 +41,7 @@
               </div>
             </template>
             <div class="card-body">
-              <h6 class="card-title">{{ service.title }}</h6>
+              <h6 class="card-title" :ref="service.id"></h6>
               <p class="card-text mx-auto">
                 {{ service.text }}
               </p>
@@ -70,24 +70,28 @@ export default {
       rawMessage: `We Provide The Best <span class="orange-color">Services</span>`,
       services: [
         {
+          id: "seo-sem",
           title: "Seo/Sem",
           text: "Boosting visibility with SEO and SEM for higher traffic and conversions",
           color: "#f1c00c",
           icon: "analysis",
         },
         {
+          id: "marketing",
           title: "Marketing",
           text: "Driving engagement and growth through strategic and effective marketing",
           color: "#02ea6a",
           icon: "mobile-marketing",
         },
         {
+          id: "viral-campaign",
           title: "Viral Campaign",
           text: "Creating buzz and rapid engagement through strategic viral campaigns",
           color: "#876fed",
           icon: "web-promotion",
         },
         {
+          id: "others",
           title: "Others",
           text: "Providing tailored solutions to meet diverse business needs effectively",
           color: "#f43a01",
@@ -137,8 +141,25 @@ export default {
           }
         );
 
+        this.showServicesTitles();
+
         window.removeEventListener("scroll", this.checkVisibility);
       }
+    },
+    showServicesTitles() {
+      // الوصول إلى العناصر باستخدام this.$refs
+      this.services.forEach((service) => {
+        const refEl = this.$refs[service.id];
+
+        // في حالة ref موجود
+        if (refEl) {
+          gsap.to(refEl, {
+            text: service.title,
+            duration: 1.5,
+            ease: "power1.in",
+          });
+        }
+      });
     },
   },
   computed: {
@@ -175,6 +196,10 @@ export default {
 .service-card .square img {
   width: 50px;
 }
+
+/* .service-card .card-title {
+  min-height: 20px;
+} */
 
 .service-card .card-text {
   font-size: 15px;

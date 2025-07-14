@@ -9,8 +9,11 @@
               business
             </h1> -->
             <div class="wrapper card-title">
-              <!-- <p class="typewriter" ref="typewriterText"></p> -->
               <h1 class="split-text" ref="splitText"></h1>
+              <h1 class="split-text dummy-item">
+                We create <span class="orange-color">solutions</span> for your
+                business
+              </h1>
             </div>
             <p class="card-text mt-3">
               Our team keeps a keen eye on emerging trends and technologies to
@@ -122,13 +125,25 @@ export default {
 .container-fluid {
   transform: translateY(-20px);
 }
+
 .card-title {
   /* width: 390px; */
+  position: relative;
+}
+
+.card-title h1.split-text {
+  font-weight: 700;
   width: 370px;
 }
-.card-title h1 {
-  font-weight: 700;
+
+.card-title h1.split-text:not(.dummy-item) {
+  position: absolute;
 }
+
+.card-title h1.split-text.dummy-item {
+  visibility: hidden;
+}
+
 .card-text {
   color: #6d6d6d;
 }
@@ -184,13 +199,13 @@ export default {
 }
 
 @media (max-width: 767.98px) {
-  .card-title {
+  .card-title h1.split-text {
     width: 300px;
   }
 }
 
 @media (max-width: 575.98px) {
-  .card-title {
+  .card-title h1.split-text {
     width: 100%;
   }
 }

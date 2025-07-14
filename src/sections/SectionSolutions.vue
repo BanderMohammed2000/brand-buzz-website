@@ -33,7 +33,8 @@
               <div class="circle-num">{{ solution.num }}</div>
             </template>
             <div class="card-body pb-0 pe-0">
-              <h6 class="card-title mb-0">{{ solution.title }}</h6>
+              <h6 class="card-title mb-0" :ref="solution.id"></h6>
+              <h6 class="card-title dummy-item mb-0">{{ solution.title }}</h6>
               <p class="card-text">{{ solution.text }}</p>
             </div>
           </horizontal-card>
@@ -80,21 +81,25 @@ export default {
       },
       solutions: [
         {
+          id: "contact-us",
           num: 1,
           title: "Contact us",
           text: "Contact us to boost your brand visibility",
         },
         {
+          id: "consult",
           num: 2,
           title: "Consult",
           text: "Always available to answer your questions",
         },
         {
+          id: "place-order",
           num: 3,
           title: "Place order",
           text: "Buy our package today to proceed",
         },
         {
+          id: "payment",
           num: 4,
           title: "Payment",
           text: "We receives payments in all types of banking",
@@ -144,6 +149,8 @@ export default {
           }
         );
 
+        this.showSolutionsTitles();
+
         window.removeEventListener("scroll", this.checkVisibility);
       }
     },
@@ -161,6 +168,27 @@ export default {
         }
         window.removeEventListener("scroll", this.showCirclesHandler);
       }
+    },
+    showSolutionsTitles() {
+      // let delayVal = 0.5;
+
+      // الوصول إلى العناصر باستخدام this.$refs
+      this.solutions.forEach((solution, index) => {
+        const refEl = this.$refs[solution.id];
+
+        if (refEl) {
+          gsap.to(refEl, {
+            text: solution.title,
+            duration: 1,
+            delay: index * 0.5,
+            ease: "power1.in",
+            // onStart: () => {
+            //   refEl[0].style.visibility = "visible";
+            // },
+            // autoAlpha: 1,
+          });
+        }
+      });
     },
     showCirclesHandler() {
       this.showCircles(this.circlesOpacity, 0);
@@ -200,7 +228,16 @@ export default {
 }
 
 .horizontal-card .card-body {
+  position: relative;
   padding-top: 10px;
+}
+
+.horizontal-card .card-title:not(.dummy-item) {
+  position: absolute;
+  top: 10px;
+}
+.horizontal-card .card-title.dummy-item {
+  visibility: hidden;
 }
 
 .horizontal-card .card-text {
@@ -262,6 +299,10 @@ export default {
 
   .horizontal-card .card-body {
     padding-top: 5px;
+  }
+
+  .horizontal-card .card-title:not(.dummy-item) {
+    top: 5px;
   }
 
   .horizontal-card .card-text {
