@@ -33,8 +33,8 @@
               </div>
             </template>
             <div class="card-body pb-0 pe-0">
-              <h6 class="card-title mb-0" :ref="solution.id"></h6>
-              <h6 class="card-title dummy-item mb-0">{{ solution.title }}</h6>
+              <h2 class="card-title mb-0" :ref="solution.id"></h2>
+              <h2 class="card-title dummy-item mb-0">{{ solution.title }}</h2>
               <p class="card-text">{{ solution.text }}</p>
             </div>
           </horizontal-card>
@@ -239,6 +239,10 @@ export default {
 .horizontal-card .card-body {
   position: relative;
   padding-top: 10px;
+}
+
+.horizontal-card .card-title {
+  font-size: 1rem;
 }
 
 .horizontal-card .card-title:not(.dummy-item) {

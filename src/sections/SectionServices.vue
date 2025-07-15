@@ -37,8 +37,8 @@
               </div>
             </template>
             <div class="card-body">
-              <h6 class="card-title" :ref="service.id"></h6>
-              <h6 class="card-title dummy-item">{{ service.title }}</h6>
+              <h2 class="card-title" :ref="service.id"></h2>
+              <h2 class="card-title dummy-item">{{ service.title }}</h2>
               <p class="card-text mx-auto">
                 {{ service.text }}
               </p>
@@ -207,6 +207,10 @@ export default {
 
 .service-card .card-body {
   position: relative;
+}
+
+.service-card .card-title {
+  font-size: 1rem;
 }
 
 .service-card .card-title:not(.dummy-item) {

@@ -22,7 +22,7 @@
           <div>
             <div class="d-flex">
               <base-logo></base-logo>
-              <h6>BrandBuzz</h6>
+              <h3 class="brand">BrandBuzz</h3>
             </div>
             <ul class="list-inline mt-4 ms-2">
               <li class="list-inline-item logo">
@@ -168,7 +168,7 @@ footer {
   top: -50%;
 }
 
-h6 {
+h3.brand {
   font-weight: 700;
   font-size: 15px;
   margin-bottom: 0;

@@ -4,7 +4,7 @@
       <div class="d-flex align-items-center pt-2">
         <img :src="data.image" :alt="data.name" loading="lazy" />
         <div>
-          <h6 class="card-title mb-0">{{ data.name }}</h6>
+          <h2 class="card-title mb-0">{{ data.name }}</h2>
           <span class="text-secondary">{{ data.jop }}</span>
         </div>
       </div>

@@ -16,12 +16,20 @@
           <comment-card :data="data"></comment-card>
         </div>
       </div>
-      <button class="carousel-control-prev" @click="scrollPrev">
+      <button
+        class="carousel-control-prev"
+        @click="scrollPrev"
+        aria-label="Previous slide"
+      >
         <span>
           <i class="fa-solid fa-angle-left fa-lg"></i>
         </span>
       </button>
-      <button class="carousel-control-next" @click="scrollNext">
+      <button
+        class="carousel-control-next"
+        @click="scrollNext"
+        aria-label="Next slide"
+      >
         <span> <i class="fa-solid fa-angle-right fa-lg"></i> </span>
       </button>
     </div>
