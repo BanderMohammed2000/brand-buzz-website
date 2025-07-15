@@ -25,7 +25,7 @@
       <div class="col-lg-7">
         <img
           src="/images/starting-business.svg"
-          class="img"
+          class="img mt-5 mt-lg-0"
           alt="starting-business"
         />
       </div>
