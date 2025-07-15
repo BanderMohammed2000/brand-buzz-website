@@ -1,9 +1,4 @@
 <template>
-  <!-- <div
-    class="container-circles"
-    :style="{ transform, top, right, bottom, left }"
-  ></div> -->
-
   <div
     class="multiple-circles"
     :style="{ transform, top, right, bottom, left }"
@@ -34,14 +29,10 @@ export default {
 </script>
 
 <style scoped>
-/* .container-circles {
-  position: absolute;
-} */
 .multiple-circles {
   position: relative;
   width: 140px;
   height: 120px;
-  /* background-color: red; */
 }
 
 .multiple-circles div {

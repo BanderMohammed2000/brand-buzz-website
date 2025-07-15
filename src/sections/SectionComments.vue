@@ -5,16 +5,9 @@
         <div class="col">
           <base-card class="mt-b">
             <div class="card-body">
-              <!-- <h1 class="card-title">
-                What <span class="orange-color">Clients</span> Say!
-              </h1> -->
               <div class="wrapper card-title">
                 <h1 class="split-text" ref="splitText"></h1>
               </div>
-              <!-- <p class="card-text mt-3 mb-0">
-                See How Our Digital Marketing Agency Helped
-              </p>
-              <p class="card-text">Clients Achieve Their Goals</p> -->
               <p class="card-text mt-3">
                 See How Our Digital Marketing Agency Helped Clients Achieve
                 Their Goals
@@ -58,9 +51,9 @@ export default {
       this.checkVisibility();
     });
   },
-  // beforeDestroy() {
-  //   window.removeEventListener("scroll", this.checkVisibility);
-  // },
+  beforeUnmount() {
+    window.removeEventListener("scroll", this.checkVisibility);
+  },
   methods: {
     checkVisibility() {
       const el = this.$refs.splitText;
@@ -69,16 +62,13 @@ export default {
         const el = this.$refs.splitText;
         el.innerHTML = "";
 
-        // عنصر مؤقت لتحويل HTML string إلى DOM nodes
         const tempDiv = document.createElement("div");
         tempDiv.innerHTML = message;
 
-        // نضيف كل عناصر tempDiv المفصولة إلى العنصر المستهدف
         tempDiv.childNodes.forEach((node) => {
           el.appendChild(splitNode(node));
         });
 
-        // تطبيق أنيميشن gsap على كل الـ spans داخل el
         const spans = el.querySelectorAll("span");
         gsap.fromTo(
           spans,

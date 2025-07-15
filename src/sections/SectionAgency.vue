@@ -5,11 +5,7 @@
         <div class="col-lg-6 my-auto">
           <base-card class="mb-3">
             <div class="card-body">
-              <!-- <h1 class="card-title">
-                Our <span class="orange-color">Agency</span>
-              </h1> -->
               <div class="wrapper card-title">
-                <!-- <p class="typewriter" ref="typewriterText"></p> -->
                 <h1 class="split-text" ref="splitText"></h1>
               </div>
               <p class="card-text mt-3">
@@ -26,8 +22,12 @@
           </base-card>
         </div>
         <div class="col-lg-6 col-image mx-auto mb-5 mb-lg-0">
-          <!-- <div class="img"></div> -->
-          <img src="/images/Data analysis-bro.svg" class="img" loading="lazy" />
+          <img
+            src="/images/Data analysis-bro.svg"
+            alt="Data analysis"
+            class="img"
+            loading="lazy"
+          />
         </div>
       </div>
     </div>
@@ -75,9 +75,10 @@ export default {
     window.addEventListener("scroll", this.showCirclesHandler);
   },
 
-  // beforeDestroy() {
-  //   window.removeEventListener("scroll", this.checkVisibility);
-  // },
+  beforeUnmount() {
+    window.removeEventListener("scroll", this.checkVisibility);
+    window.removeEventListener("scroll", this.showCirclesHandler);
+  },
   methods: {
     checkVisibility() {
       const el = this.$refs.splitText;
@@ -86,16 +87,13 @@ export default {
         const el = this.$refs.splitText;
         el.innerHTML = "";
 
-        // عنصر مؤقت لتحويل HTML string إلى DOM nodes
         const tempDiv = document.createElement("div");
         tempDiv.innerHTML = message;
 
-        // نضيف كل عناصر tempDiv المفصولة إلى العنصر المستهدف
         tempDiv.childNodes.forEach((node) => {
           el.appendChild(splitNode(node));
         });
 
-        // تطبيق أنيميشن gsap على كل الـ spans داخل el
         const spans = el.querySelectorAll("span");
         gsap.fromTo(
           spans,

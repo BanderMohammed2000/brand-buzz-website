@@ -105,8 +105,6 @@ export default {
       const carouselInner = this.$refs.carouselInner;
       const carouselItems = carouselInner.children;
 
-      // this.numOfClicksNext = Math.floor((this.commentData.length - 3) / 2) + 1;
-
       let commentDataLength = (this.commentData.length - 3) / 2;
       this.numOfClicksNext =
         commentDataLength % 1 !== 0
@@ -114,13 +112,7 @@ export default {
           : commentDataLength;
 
       if (carouselItems.length > 0) {
-        // offsetWidth يعطينا العرض الفعلي (بالبكسل) لهذا العنصر، بما في ذلك الـ padding والـ border، لكنه لا يشمل الـ margin.
         this.cardWidth = carouselItems[0].offsetWidth;
-
-        // console.log(this.cardWidth);
-
-        // console.log(Math.floor(carouselItems.length / 2 - 1) * 450);
-        // console.log("scrollPosition ", this.scrollPosition);
 
         /*
         scrollWidth يعطينا العرض الكامل القابل للتمرير (scrollable width) داخل carouselInner.
@@ -133,9 +125,6 @@ export default {
 
         let value = carouselItems.length / 2;
         this.activeItemIndex = value % 1 !== 0 ? Math.ceil(value) : value + 1;
-
-        // console.log("card offsetWidth ", carouselItems[0].offsetWidth);
-        // console.log("scrollWidth ", carouselInner.scrollWidth);
 
         this.$refs.carouselInner.scrollTo({
           left: this.scrollPosition,
@@ -155,22 +144,16 @@ export default {
     checkScreenSize() {
       this.isSmallScreen = window.matchMedia("(max-width: 575px)").matches;
       let mobileSize = window.matchMedia("(max-width: 575px)").matches;
-      // let tabletSize = window.matchMedia("(min-width: 576px)").matches;
       let labSize = window.matchMedia("(min-width: 768px)").matches;
 
       this.numOfCardsShown = mobileSize ? 1 : labSize ? 3 : 2;
-      // console.log(this.numOfCardsShown);
     },
     scrollNext() {
-      // this.scrollPosition <
-      //   this.carouselWidth - this.cardWidth * this.numOfCardsShown
       if (
         this.numOfClicksNext <
         this.commentData.length - this.numOfCardsShown
       ) {
         this.scrollPosition += this.cardWidth;
-
-        // console.log("scrollPosition  scrollNext  " + this.scrollPosition);
 
         this.$refs.carouselInner.scrollTo({
           left: this.scrollPosition,
@@ -179,14 +162,11 @@ export default {
 
         this.activeItemIndex++;
         this.numOfClicksNext++;
-        // console.log("scrollNext  " + this.numOfClicksNext);
       }
     },
     scrollPrev() {
-      // this.scrollPosition > 0
       if (this.numOfClicksNext > 0) {
         this.scrollPosition -= this.cardWidth;
-        // console.log("scrollPosition  scrollPrev  " + this.scrollPosition);
 
         this.$refs.carouselInner.scrollTo({
           left: this.scrollPosition,
@@ -195,7 +175,6 @@ export default {
 
         this.activeItemIndex--;
         this.numOfClicksNext--;
-        // console.log("scrollPrev  " + this.numOfClicksNext);
       }
     },
   },
@@ -253,7 +232,6 @@ export default {
 @media screen and (min-width: 576px) {
   .carousel-inner {
     display: flex;
-    /* width: 90%; */
     width: 100%;
     margin-inline: auto;
     padding: 1em 0;
@@ -270,9 +248,7 @@ export default {
   .carousel-item {
     display: block;
     margin-right: 0;
-    /* flex: 0 0 calc(99% / 3); */
     flex: 0 0 calc(100% / 3);
-    /* flex: 0 0 450px; */
   }
 }
 
@@ -286,17 +262,14 @@ export default {
 @media (max-width: 575px) {
   .carousel-inner {
     display: flex;
-    /* width: 90%; */
     width: 90%;
     margin-inline: auto;
     padding: 1em 0;
-    /* overflow: hidden; */
   }
   .carousel-item {
     display: block;
     margin-right: 0;
     flex: 0 0 100%;
-    /* flex: 0 0 450px; */
   }
   .carousel-control-next {
     right: 7px;

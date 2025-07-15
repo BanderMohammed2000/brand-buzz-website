@@ -54,12 +54,6 @@ export default {
   padding: 0;
 }
 
-/* .service-card .card-body,
-.service-card .card-footer {
-  margin-left: 12px;
-  margin-right: 12px;
-} */
-
 @media (max-width: 991.98px) {
   .service-card {
     width: 95%;
@@ -71,10 +65,4 @@ export default {
     width: 80%;
   }
 }
-
-/* @media (max-width: 575.98px) {
-  .service-card {
-    width: 80%;
-  }
-} */
 </style>

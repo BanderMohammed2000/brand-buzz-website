@@ -6,7 +6,6 @@
         <div>
           <h6 class="card-title mb-0">{{ data.name }}</h6>
           <span class="text-secondary">{{ data.jop }}</span>
-          <!-- <div class="text-secondary">{{ index + 1 }}</div> -->
         </div>
       </div>
       <p class="card-text mt-3 mb-3">{{ data.text }}</p>

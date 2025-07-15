@@ -5,7 +5,6 @@
         <div class="col">
           <div class="row">
             <div class="col-sm-6">
-              <!-- <h3>Ready to get started?</h3> -->
               <div class="wrapper card-title">
                 <h3 class="split-text" ref="splitText"></h3>
               </div>
@@ -108,14 +107,13 @@ export default {
       this.checkVisibility();
     });
   },
-  // beforeDestroy() {
-  //   window.removeEventListener("scroll", this.checkVisibility);
-  // },
+  beforeUnmount() {
+    window.removeEventListener("scroll", this.checkVisibility);
+  },
   methods: {
     checkVisibility() {
       const el = this.$refs.splitText;
       if (el && isInViewport(el)) {
-        // تقسيم النص يدويًا بدون SplitText
         const message = this.rawMessage;
         const el = this.$refs.splitText;
         el.innerHTML = "";
@@ -158,11 +156,9 @@ footer {
 }
 .col > div {
   align-items: center;
-  /* justify-content: space-between; */
   flex-wrap: wrap;
   background-color: #e85f19;
   color: #ffffff;
-  /* width: 85%; */
   height: 95px;
   margin: auto;
   border: 2px solid #ffffff;
@@ -189,17 +185,9 @@ h6 {
   align-items: center;
   background-color: #e85f19;
   color: #ffffff;
-  /* padding: 30px 0; */
   height: 100px;
-  /* border-radius: 46% 54% 0% 0% / 86% 86% 14% 14%; */
   clip-path: ellipse(51% 87% at 50% 112%);
-
-  /* border: 2px solid #e65415; */
 }
-
-/* .col > div .outline {
-  margin-left: 20px;
-} */
 
 @media (max-width: 991.98px) {
   .col-icon {
@@ -230,18 +218,12 @@ h6 {
   .col > div {
     text-align: center;
     height: 100px;
-    /* width: 90%; */
   }
   .col > div h3 {
     font-size: 17px;
   }
   .col > div .outline {
-    /* font-size: 13px;
-    padding: 0.4rem 0.8rem; */
     margin-top: 5px;
   }
-  /* .row-items {
-    margin-left: 15px;
-  } */
 }
 </style>

@@ -5,11 +5,7 @@
         <div class="col text-center">
           <base-card>
             <div class="card-body pt-3 pt-lg-0">
-              <!-- <h1 class="card-title" ref="myElement">
-                We Provide The Best <span class="orange-color">Services</span>
-              </h1> -->
               <div class="wrapper card-title">
-                <!-- <p class="typewriter" ref="typewriterText"></p> -->
                 <h1 class="split-text" ref="splitText"></h1>
               </div>
               <p id="card-text" class="card-text mt-3 mx-auto">
@@ -33,7 +29,6 @@
                 ref="square"
                 :style="{ backgroundColor: service.color }"
               >
-                <!-- <span><i :class="service.icon"></i></span> -->
                 <img
                   :src="`/icons/${service.icon}.png`"
                   ref="icon"
@@ -105,15 +100,14 @@ export default {
   mounted() {
     document.fonts.ready.then(() => {
       window.addEventListener("scroll", this.checkVisibility);
-      // تأكد أيضاً عند التحميل الأول
       this.checkVisibility();
     });
     window.addEventListener("scroll", this.executeAnimationOnCard);
-    // console.log(this.$refs.icon[0].style);
   },
-  // beforeDestroy() {
-  //   window.removeEventListener("scroll", this.checkVisibility);
-  // },
+  beforeUnmount() {
+    window.removeEventListener("scroll", this.checkVisibility);
+    window.removeEventListener("scroll", this.executeAnimationOnCard);
+  },
   methods: {
     checkVisibility() {
       const el = this.$refs.splitText;
@@ -122,16 +116,13 @@ export default {
         const el = this.$refs.splitText;
         el.innerHTML = "";
 
-        // عنصر مؤقت لتحويل HTML string إلى DOM nodes
         const tempDiv = document.createElement("div");
         tempDiv.innerHTML = message;
 
-        // نضيف كل عناصر tempDiv المفصولة إلى العنصر المستهدف
         tempDiv.childNodes.forEach((node) => {
           el.appendChild(splitNode(node));
         });
 
-        // تطبيق أنيميشن gsap على كل الـ spans داخل el
         const spans = el.querySelectorAll("span");
         gsap.fromTo(
           spans,
@@ -159,11 +150,8 @@ export default {
       }
     },
     showServicesTitles() {
-      // الوصول إلى العناصر باستخدام this.$refs
       this.services.forEach((service) => {
         const refEl = this.$refs[service.id];
-
-        // في حالة ref موجود
         if (refEl) {
           gsap.to(refEl, {
             text: service.title,
@@ -175,37 +163,24 @@ export default {
     },
     expandSquare() {
       const el = this.$refs.square;
-      // gsap.set(el, { width: 0 });
-      // ثم نُشغّل الأنيميشن للوصول إلى 70px
       return gsap.to(el, {
         width: "70px",
-        duration: 1.5, // مدة الحركة
-        ease: "power2.out", // نوع السلاسة (تجعلها أكثر نعومة)
+        duration: 1.5,
+        ease: "power2.out",
       });
     },
     showIcon() {
-      // const icon = this.$refs.icon;
-      // gsap.fromTo(
-      //   icon,
-      //   { opacity: 0 }, // تبدأ مخفية
-      //   {
-      //     opacity: 1,
-      //     duration: 1,
-      //     ease: "power2.out", // أو استخدم ease مختلف حسب الذوق
-      //   }
-      // );
-
       const icons = this.$refs.icon;
       icons.forEach((icon, index) => {
         if (icon) {
           gsap.fromTo(
             icon,
-            { opacity: 0 }, // تبدأ مخفية
+            { opacity: 0 },
             {
               opacity: 1,
               duration: 1,
               delay: index * 0.4,
-              ease: "power2.out", // أو استخدم ease مختلف حسب الذوق
+              ease: "power2.out",
             }
           );
         }
@@ -252,18 +227,10 @@ export default {
   border-radius: 7% 25% 26% 1% / 5% 33% 36% 27%;
 }
 
-/* button.outline.button-small {
-  background-color: #00000008;
-} */
-
 .service-card .square img {
   width: 50px;
   opacity: 0;
 }
-
-/* .service-card .card-title {
-  min-height: 20px;
-} */
 
 .service-card .card-text {
   font-size: 15px;

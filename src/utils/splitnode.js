@@ -1,4 +1,3 @@
-// دالة تفصل كل نص إلى spans لكل حرف، وتحافظ على عناصر HTML وعناصرها الفرعية
 export function splitNode(node) {
   if (node.nodeType === Node.TEXT_NODE) {
     const chars = node.textContent.split("");
@@ -11,7 +10,6 @@ export function splitNode(node) {
     return fragment;
   } else if (node.nodeType === Node.ELEMENT_NODE) {
     const newEl = document.createElement(node.tagName);
-    // نسخ الصفات (attributes) مثل الكلاس
     for (let attr of node.attributes) {
       newEl.setAttribute(attr.name, attr.value);
     }

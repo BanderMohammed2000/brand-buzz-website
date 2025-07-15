@@ -51,8 +51,6 @@ section:not(section#comments) {
   section:not(section#comments) {
     padding-left: 15px;
     padding-right: 15px;
-    /* padding-left: 30px;
-    padding-right: 30px; */
   }
 }
 </style>

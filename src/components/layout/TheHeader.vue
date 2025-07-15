@@ -6,19 +6,6 @@
           <base-logo></base-logo>
           BrandBuzz
         </a>
-        <!-- <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-          @click="toggleMenu"
-        >
-          <i class="fa-solid fa-bars fa-lg" v-if="!isMenuOpen"></i>
-          <i class="fa-solid fa-x fa-lg" v-else></i>
-        </button> -->
         <button
           class="navbar-toggler"
           type="button"
@@ -124,7 +111,6 @@ export default {
   },
   mounted() {
     this.showCircles(this.circlesOpacity, 2500);
-
     const onScroll = () => {
       if (window.scrollY >= 300 && window.scrollY <= 400) {
         this.showCircles(this.circlesOpacitySecond, 0);
@@ -132,6 +118,9 @@ export default {
       }
     };
     window.addEventListener("scroll", onScroll);
+  },
+  beforeUnmount() {
+    window.removeEventListener("scroll", onScroll);
   },
   methods: {
     toggleMenu() {
@@ -148,10 +137,6 @@ export default {
         time += 300;
       }
     },
-
-    // scroll(){
-    //   window.addEventListener("scroll")
-    // };
   },
 };
 </script>
@@ -161,12 +146,6 @@ export default {
 .nav-item .nav-link {
   font-weight: 500;
 }
-/* button.navbar-toggler {
-  border: none;
-}
-button.navbar-toggler:focus {
-  box-shadow: none;
-} */
 
 button.navbar-toggler {
   position: relative;

@@ -6,15 +6,13 @@
           <img
             src="/images/SEO analytics team-amico.svg"
             class="img"
+            alt="SEO analytics"
             loading="lazy"
           />
         </div>
         <div class="col-lg-6 my-auto">
           <base-card class="base-card">
             <div class="card-body">
-              <!-- <h1 class="card-title">
-                Simple <span class="orange-color">Solutions!</span>
-              </h1> -->
               <div class="wrapper card-title">
                 <h1 class="split-text" ref="splitText"></h1>
               </div>
@@ -30,7 +28,9 @@
             :key="solution.num"
           >
             <template v-slot:img>
-              <div class="circle-num">{{ solution.num }}</div>
+              <div class="circle-num">
+                <span ref="num">{{ solution.num }}</span>
+              </div>
             </template>
             <div class="card-body pb-0 pe-0">
               <h6 class="card-title mb-0" :ref="solution.id"></h6>
@@ -115,9 +115,10 @@ export default {
     });
     window.addEventListener("scroll", this.showCirclesHandler);
   },
-  // beforeDestroy() {
-  //   window.removeEventListener("scroll", this.checkVisibility);
-  // },
+  beforeUnmount() {
+    window.removeEventListener("scroll", this.checkVisibility);
+    window.removeEventListener("scroll", this.showCirclesHandler);
+  },
   methods: {
     checkVisibility() {
       const el = this.$refs.splitText;
@@ -126,16 +127,13 @@ export default {
         const el = this.$refs.splitText;
         el.innerHTML = "";
 
-        // عنصر مؤقت لتحويل HTML string إلى DOM nodes
         const tempDiv = document.createElement("div");
         tempDiv.innerHTML = message;
 
-        // نضيف كل عناصر tempDiv المفصولة إلى العنصر المستهدف
         tempDiv.childNodes.forEach((node) => {
           el.appendChild(splitNode(node));
         });
 
-        // تطبيق أنيميشن gsap على كل الـ spans داخل el
         const spans = el.querySelectorAll("span");
         gsap.fromTo(
           spans,
@@ -150,6 +148,7 @@ export default {
         );
 
         this.showSolutionsTitles();
+        this.showNumbers();
 
         window.removeEventListener("scroll", this.checkVisibility);
       }
@@ -170,9 +169,6 @@ export default {
       }
     },
     showSolutionsTitles() {
-      // let delayVal = 0.5;
-
-      // الوصول إلى العناصر باستخدام this.$refs
       this.solutions.forEach((solution, index) => {
         const refEl = this.$refs[solution.id];
 
@@ -188,6 +184,23 @@ export default {
     },
     showCirclesHandler() {
       this.showCircles(this.circlesOpacity, 0);
+    },
+    showNumbers() {
+      const numbers = this.$refs.num;
+      numbers.forEach((num, index) => {
+        if (num) {
+          gsap.fromTo(
+            num,
+            { opacity: 0 },
+            {
+              opacity: 1,
+              duration: 1,
+              delay: index * 0.7,
+              ease: "power2.out",
+            }
+          );
+        }
+      });
     },
   },
 };
