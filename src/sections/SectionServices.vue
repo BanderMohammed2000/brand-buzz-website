@@ -12,7 +12,7 @@
                 <!-- <p class="typewriter" ref="typewriterText"></p> -->
                 <h1 class="split-text" ref="splitText"></h1>
               </div>
-              <p class="card-text mt-3 mx-auto">
+              <p id="card-text" class="card-text mt-3 mx-auto">
                 Let us unleash the full potential of your business with our
                 data-driven strategies
               </p>
@@ -30,18 +30,20 @@
             <template v-slot:header>
               <div
                 class="square py-2"
+                ref="square"
                 :style="{ backgroundColor: service.color }"
               >
                 <!-- <span><i :class="service.icon"></i></span> -->
                 <img
                   :src="`/icons/${service.icon}.png`"
+                  ref="icon"
                   alt="icon"
-                  loading="lazy"
                 />
               </div>
             </template>
             <div class="card-body">
               <h6 class="card-title" :ref="service.id"></h6>
+              <h6 class="card-title dummy-item">{{ service.title }}</h6>
               <p class="card-text mx-auto">
                 {{ service.text }}
               </p>
@@ -106,10 +108,12 @@ export default {
       // تأكد أيضاً عند التحميل الأول
       this.checkVisibility();
     });
+    window.addEventListener("scroll", this.executeAnimationOnCard);
+    // console.log(this.$refs.icon[0].style);
   },
-  beforeDestroy() {
-    window.removeEventListener("scroll", this.checkVisibility);
-  },
+  // beforeDestroy() {
+  //   window.removeEventListener("scroll", this.checkVisibility);
+  // },
   methods: {
     checkVisibility() {
       const el = this.$refs.splitText;
@@ -141,9 +145,17 @@ export default {
           }
         );
 
-        this.showServicesTitles();
-
         window.removeEventListener("scroll", this.checkVisibility);
+      }
+    },
+    executeAnimationOnCard() {
+      const cardText = document.getElementById("card-text");
+      if (cardText && isInViewport(cardText)) {
+        this.showServicesTitles();
+        this.expandSquare().then(() => {
+          this.showIcon();
+        });
+        window.removeEventListener("scroll", this.executeAnimationOnCard);
       }
     },
     showServicesTitles() {
@@ -158,6 +170,44 @@ export default {
             duration: 1.5,
             ease: "power1.in",
           });
+        }
+      });
+    },
+    expandSquare() {
+      const el = this.$refs.square;
+      // gsap.set(el, { width: 0 });
+      // ثم نُشغّل الأنيميشن للوصول إلى 70px
+      return gsap.to(el, {
+        width: "70px",
+        duration: 1.5, // مدة الحركة
+        ease: "power2.out", // نوع السلاسة (تجعلها أكثر نعومة)
+      });
+    },
+    showIcon() {
+      // const icon = this.$refs.icon;
+      // gsap.fromTo(
+      //   icon,
+      //   { opacity: 0 }, // تبدأ مخفية
+      //   {
+      //     opacity: 1,
+      //     duration: 1,
+      //     ease: "power2.out", // أو استخدم ease مختلف حسب الذوق
+      //   }
+      // );
+
+      const icons = this.$refs.icon;
+      icons.forEach((icon, index) => {
+        if (icon) {
+          gsap.fromTo(
+            icon,
+            { opacity: 0 }, // تبدأ مخفية
+            {
+              opacity: 1,
+              duration: 1,
+              delay: index * 0.4,
+              ease: "power2.out", // أو استخدم ease مختلف حسب الذوق
+            }
+          );
         }
       });
     },
@@ -180,12 +230,25 @@ export default {
   width: 385px;
 }
 
+.service-card .card-body {
+  position: relative;
+}
+
+.service-card .card-title:not(.dummy-item) {
+  position: absolute;
+  top: 16px;
+}
+.service-card .card-title.dummy-item {
+  visibility: hidden;
+}
+
 .service-card .square {
   display: flex;
   align-items: center;
   justify-content: center;
   color: #ffffff;
-  width: 70px;
+  width: 0;
+  height: 66px;
   border-radius: 7% 25% 26% 1% / 5% 33% 36% 27%;
 }
 
@@ -195,6 +258,7 @@ export default {
 
 .service-card .square img {
   width: 50px;
+  opacity: 0;
 }
 
 /* .service-card .card-title {

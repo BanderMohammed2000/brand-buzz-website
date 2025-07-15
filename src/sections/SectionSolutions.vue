@@ -182,10 +182,6 @@ export default {
             duration: 1,
             delay: index * 0.5,
             ease: "power1.in",
-            // onStart: () => {
-            //   refEl[0].style.visibility = "visible";
-            // },
-            // autoAlpha: 1,
           });
         }
       });
