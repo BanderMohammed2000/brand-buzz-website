@@ -30,7 +30,7 @@
                 :style="{ backgroundColor: service.color }"
               >
                 <img
-                  :src="`/icons/${service.icon}.png`"
+                  :src="`/brand-buzz-website/icons/${service.icon}.png`"
                   ref="icon"
                   alt="icon"
                 />
